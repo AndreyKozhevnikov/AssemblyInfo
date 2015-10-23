@@ -38,7 +38,8 @@ namespace AssemblyInfo {
             if (fileName == "") {
                 System.Console.WriteLine("Usage: AssemblyInfoUtil <path to AssemblyInfo.cs or AssemblyInfo.vb file> [options]");
                 System.Console.WriteLine("Options: ");
-                System.Console.WriteLine("  -set:<new version number> - 	set new version number (in NN.NN.NN.NN format)");
+                //   System.Console.WriteLine("  -set:<new version number> - 	set new version number (in NN.NN.NN.NN format)");
+                System.Console.WriteLine("  -set:<new version number> - 	set new version number (in NN.NN.NN format) Last number will be build by number of the current date"); 
                 System.Console.WriteLine("  -inc:<parameter index>  -   increases the parameter with specified index (can be from 1 to 4)");
                 return;
             }
@@ -102,7 +103,9 @@ namespace AssemblyInfo {
                 }
 
                 else if (versionStr != null) {
-                    newVersion = versionStr;
+                   // newVersion = versionStr;
+                    var dayOfYear = DateTime.Now.DayOfYear;
+                    newVersion =string.Format("{0}.{1}",versionStr,dayOfYear);
                     performChange = true;
                 }
 
