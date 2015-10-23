@@ -27,6 +27,9 @@ namespace AssemblyInfo {
                 }
                 else if (args[i].StartsWith("-set:")) {
                     versionStr = args[i].Substring("-set:".Length);
+                    var dayOfYear = DateTime.Now.DayOfYear;
+                    string hour = DateTime.Now.ToString("HHmm");
+                    versionStr = string.Format("{0}.{1}.{2}", versionStr, dayOfYear,hour);
                 }
                 else
                     fileName = args[i];
@@ -64,6 +67,8 @@ namespace AssemblyInfo {
 
             File.Delete(fileName);
             File.Move(fileName + ".out", fileName);
+            System.Console.WriteLine();
+            System.Console.WriteLine(string.Format("New version: {0}",versionStr));
             System.Console.WriteLine("Done!");
         }
 
@@ -103,9 +108,7 @@ namespace AssemblyInfo {
                 }
 
                 else if (versionStr != null) {
-                   // newVersion = versionStr;
-                    var dayOfYear = DateTime.Now.DayOfYear;
-                    newVersion =string.Format("{0}.{1}",versionStr,dayOfYear);
+                    newVersion = versionStr;
                     performChange = true;
                 }
 
