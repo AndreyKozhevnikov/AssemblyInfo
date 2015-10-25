@@ -27,9 +27,14 @@ namespace AssemblyInfo {
                 }
                 else if (args[i].StartsWith("-set:")) {
                     versionStr = args[i].Substring("-set:".Length);
-                    var dayOfYear = DateTime.Now.DayOfYear;
+                         var year = DateTime.Now.ToString("yy");
+                    var month = DateTime.Now.Month;
+                    var dayOfMonth = DateTime.Now.Day;
                     string hour = DateTime.Now.ToString("HHmm");
-                    versionStr = string.Format("{0}.{1}.{2}", versionStr, dayOfYear,hour);
+                 // var   oldversionStr = string.Format("{0}.{1}.{2}", versionStr, dayOfYear,hour);
+                    versionStr = string.Format("{0}.{1}.{2}.{3}", year, month, dayOfMonth, hour);
+                   
+
                 }
                 else
                     fileName = args[i];
